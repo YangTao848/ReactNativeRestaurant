@@ -7,10 +7,11 @@ class Main extends Component {
         super(props);
         this.state = {
             dishes: DISHES
-        }
+        };
     }
-    
+
     render() {
+
         return (
             <Menu dishes={this.state.dishes} />
         );
