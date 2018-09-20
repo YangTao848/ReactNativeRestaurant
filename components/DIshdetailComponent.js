@@ -17,3 +17,9 @@ function RenderDish(props) {
         return (<View></View>);
     }
 }
+
+function Dishdetail(props) {
+    return(<RenderDish dish={props.dish} />);
+}
+
+export default Dishdetail;
