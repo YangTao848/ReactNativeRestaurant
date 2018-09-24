@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import Menu from './MenuComponent';
-import { DISHES } from '../shared/dishes';
 import Dishdetail from './DishdetailComponent';
-import { View } from 'react-native';
+import { View, Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
-import { platform } from 'os';
 
-const MenuNavigatror = createStackNavigator(
+const MenuNavigator = createStackNavigator(
     {
         Menu: { screen: Menu },
         Dishdetail: { screen: Dishdetail }
@@ -29,17 +27,6 @@ const MenuNavigatror = createStackNavigator(
 );
 
 class Main extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            dishes: DISHES,
-            selectedDish: null
-        };
-    }
-
-    onDishSelect(dishId) {
-        this.setState({ selectedDish: dishId })
-    }
 
     render() {
 
@@ -48,7 +35,7 @@ class Main extends Component {
                 flex: 1,
                 paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight
             }}>
-                <MenuNavigatror />
+                <MenuNavigator />
             </View>
         );
     }
