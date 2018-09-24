@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { ListItem, Card } from 'react-native-elements';
+import { Card } from 'react-native-elements';
 
 function RenderDish(props) {
     const dish = props.dish;
-    if (dish !== null) {
+    if (dish != null) {
         return (<Card
             featuredTitle={dish.name}
             image={require('./images/uthappizza.png')}
