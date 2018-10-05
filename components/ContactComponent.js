@@ -10,7 +10,7 @@ class Contact extends Component {
 
     render() {
         return (
-            <Card featuredTitle={'Contact Information'} >
+            <Card title="Corporate Leadership" featuredTitle={'Contact Information'} >
                 <Text style={{ margin: 10 }}>{'121, Clear Water Bay Road'} </Text>
                 <Text style={{ margin: 10 }}>{'Clear Water Bay, Kowloon'} </Text>
                 <Text style={{ margin: 10 }}>{'HONG KONG'} </Text>
