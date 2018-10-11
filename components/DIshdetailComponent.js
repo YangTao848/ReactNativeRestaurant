@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, FlatList } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
+import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 
 const mapStateToProps = state => {
@@ -15,7 +16,7 @@ function RenderDish(props) {
     if (dish != null) {
         return (<Card
             featuredTitle={dish.name}
-            image={{ uri: baseUrl + item.image }}
+            image={{ uri: baseUrl + dish.image }}
         >
             <Text style={{ margin: 10 }}>
                 {dish.description}
