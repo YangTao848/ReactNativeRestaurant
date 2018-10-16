@@ -3,7 +3,7 @@ import { View, Text, ScrollView, StyleSheet, FlatList, Button, Modal } from 'rea
 import { Card, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
-import { postFavorite } from '../redux/ActionCreators';
+import { postFavorite, postComment } from '../redux/ActionCreators';
 import { Rating, Input } from 'react-native-elements';
 
 const mapStateToProps = state => {
@@ -15,7 +15,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    postFavorite: (dishId) => dispatch(postFavorite(dishId))
+    postFavorite: (dishId) => dispatch(postFavorite(dishId)),
+    postComment: (comment) => dispatch(postComment(comment))
 })
 
 function RenderDish(props) {
@@ -64,9 +65,18 @@ function RenderComments(props) {
                 <Text style={{ fontSize: 14 }}>
                     {item.comment}
                 </Text>
-                <Text style={{ fontSize: 12 }}>
-                    {item.rating} Stars
-                </Text>
+                <Rating
+                    style={{
+                        marginTop: 10,
+                        marginBottom: 10,
+                        alignItems: 'flex-start'
+                    }}
+                    type="star"
+                    fractions={1}
+                    startingValue={+item.rating}
+                    imageSize={10}
+                    readonly
+                />
                 <Text style={{ fontSize: 12 }}>
                     {'-- ' + item.author + ', ' + item.date}
                 </Text>
@@ -110,8 +120,15 @@ class Dishdetail extends Component {
         this.setState({ showModal: !this.state.showModal });
     }
 
-    handleComment() {
+    handleComment(dishId) {
         console.log(JSON.stringify(this.state));
+        this.props.postComment(
+            {
+                ...this.state,
+                id: this.props.comments.comments.length + 1,
+                dishId: dishId,
+                date: new Date().toISOString(),
+            });
         this.toggleModal();
     }
 
@@ -148,33 +165,35 @@ class Dishdetail extends Component {
                             fractions={1}
                             startingValue={this.state.rating}
                             imageSize={40}
-                            onFinishRating={(rating) => this.setState({ rating: rating })}
+                            onFinishRating={(value) => this.setState({ rating: value })}
                         />
                         <View style={{
                             marginBottom: 20,
                         }}>
                             <Input
                                 placeholder='Author'
+                                value={this.state.author}
                                 leftIcon={{ type: 'font-awesome', name: 'user-o' }}
+                                onChangeText={(text) => this.setState({ author: text })}
                             />
                             <Input
                                 placeholder='Comment'
+                                value={this.state.comment}
                                 leftIcon={{ type: 'font-awesome', name: 'comment-o' }}
+                                onChangeText={(text) => this.setState({ comment: text })}
                             />
                         </View>
                         <View style={{
-                            fontWeight: 'bold',
                             backgroundColor: '#512DA8',
                             marginBottom: 20,
                         }}>
                             <Button
-                                onPress={() => { this.toggleModal(); this.resetForm(); }}
+                                onPress={() => { this.handleComment(dishId); this.resetForm(); }}
                                 color="white"
                                 title="SUBMIT"
                             />
                         </View>
                         <View style={{
-                            fontWeight: 'bold',
                             backgroundColor: 'grey',
                             marginBottom: 20,
                         }}>
