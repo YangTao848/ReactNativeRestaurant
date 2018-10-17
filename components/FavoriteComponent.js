@@ -7,6 +7,7 @@ import { baseUrl } from '../shared/baseUrl';
 import Swipeout from 'react-native-swipeout';
 import { deleteFavorite } from '../redux/ActionCreators';
 
+
 const mapStateToProps = state => {
     return {
         dishes: state.dishes,
@@ -37,7 +38,7 @@ class Favorites extends Component {
                     onPress: () => this.props.deleteFavorite(item.id)
                 }
             ];
-            
+
             return (
                 <Swipeout right={rightButton} autoClose={true}>
                     <ListItem
