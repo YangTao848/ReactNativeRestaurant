@@ -67,8 +67,8 @@ class Login extends Component {
                 <View style={styles.formButton}>
                     <Button
                         onPress={() => this.handleLogin()}
-                        title="Login"
-                        color="#512DA8"
+                        title="LOGIN"
+                        color="white"
                     />
                 </View>
             </View>
@@ -90,7 +90,8 @@ const styles = StyleSheet.create({
         backgroundColor: null
     },
     formButton: {
-        margin: 60
+        margin: 60,
+        backgroundColor: '#512DA8'
     }
 });
 

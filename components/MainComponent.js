@@ -93,7 +93,8 @@ const AboutNavigator = createStackNavigator({
                 onPress={() => navigation.toggleDrawer()}
             />
         })
-    });
+    }
+);
 
 const ContactNavigator = createStackNavigator({
     Contact: { screen: Contact }
@@ -111,7 +112,8 @@ const ContactNavigator = createStackNavigator({
                 onPress={() => navigation.toggleDrawer()}
             />
         })
-    });
+    }
+);
 
 const ReservationNavigator = createStackNavigator({
     Reservation: { screen: Reservation }
@@ -128,7 +130,8 @@ const ReservationNavigator = createStackNavigator({
                 iconStyle={{ color: 'white' }}
                 onPress={() => navigation.navigate('DrawerToggle')} />
         })
-    })
+    }
+);
 
 const FavoritesNavigator = createStackNavigator({
     Favorites: { screen: Favorites }
@@ -145,7 +148,8 @@ const FavoritesNavigator = createStackNavigator({
                 iconStyle={{ color: 'white' }}
                 onPress={() => navigation.navigate('DrawerToggle')} />
         })
-    })
+    }
+);
 
 const LoginNavigator = createStackNavigator({
     Login: { screen: Login }
@@ -162,7 +166,8 @@ const LoginNavigator = createStackNavigator({
                 iconStyle={{ color: 'white' }}
                 onPress={() => navigation.toggleDrawer()} />
         })
-    });
+    }
+);
 
 const CustomDrawerContentComponent = (props) => (
     <ScrollView>
@@ -185,6 +190,22 @@ const CustomDrawerContentComponent = (props) => (
 );
 
 const MainNavigator = createDrawerNavigator({
+    Login:
+    {
+        screen: LoginNavigator,
+        navigationOptions: {
+            title: 'Login',
+            drawerLabel: 'Login',
+            drawerIcon: ({ tintColor, focused }) => (
+                <Icon
+                    name='sign-in'
+                    type='font-awesome'
+                    size={24}
+                    iconStyle={{ color: tintColor }}
+                />
+            ),
+        }
+    },
     Home:
     {
         screen: HomeNavigator,
@@ -281,23 +302,8 @@ const MainNavigator = createDrawerNavigator({
             ),
         }
     },
-    Login:
-    {
-        screen: LoginNavigator,
-        navigationOptions: {
-            title: 'Login',
-            drawerLabel: 'Login',
-            drawerIcon: ({ tintColor, focused }) => (
-                <Icon
-                    name='sign-in'
-                    type='font-awesome'
-                    size={24}
-                    iconStyle={{ color: tintColor }}
-                />
-            ),
-        }
-    },
 }, {
+        initialRouteName: 'Home',
         drawerBackgroundColor: '#D1C4E9',
         contentComponent: CustomDrawerContentComponent
     });
