@@ -39,7 +39,6 @@ class Login extends Component {
         else
             SecureStore.deleteItemAsync('userinfo')
                 .catch((error) => console.log('Could not delete user info', error));
-
     }
 
     render() {
