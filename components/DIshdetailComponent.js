@@ -264,7 +264,7 @@ class Dishdetail extends Component {
                             />
                         </View>
                         <View style={{
-                            backgroundColor: 'grey',
+                            backgroundColor: 'gray',
                             marginBottom: 20,
                         }}>
                             <Button
